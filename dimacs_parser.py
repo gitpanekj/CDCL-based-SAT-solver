@@ -8,7 +8,7 @@ type Header = tuple[VariableNumber, ClauseNumber]
 
 
 def parse_clause(line, formula):
-    clauses = filter(lambda x: x, line.strip().split('0'))
+    clauses = filter(lambda x: x, line.strip().split(' 0'))
     for c in clauses:
         clause = list(map(int, re.sub(r'\s+', ' ', c).strip(' ').split(' ')))
         formula.append(clause)
@@ -23,11 +23,15 @@ def parse_input() -> tuple[Header, Formula]:
     header: Header = None
     formula: list = []
     for line in sys.stdin:
-        if line[0] == 'c':   # comment
+        line = line.lstrip()
+        if not line:    continue
+        if line[0] == 'c':         # comment
             pass
-        elif line[0] == 'p': # header
+        elif line[0] == 'p':       # header
             header = parse_header(line)
-        else:                # clause
+        elif line[0] == '0':
+            break
+        elif line[0].isdigit():    # clause
             parse_clause(line, formula)
     
     return (header, formula)
