@@ -1,13 +1,18 @@
 from dimacs_parser import parse_input
 from solver import Solver, Status
+from formula import Formula, Clause
 import sys
 
 def main() -> int:
     # input
-    header, formula = parse_input()
+    header, _formula = parse_input()
+    formula = Formula(header[0])
+    for c in _formula:
+        formula.append(Clause(c))
+
     # solve
     solver = Solver()
-    result = solver.solve(header, formula)
+    result = solver.solve(formula)
     # output
     match result:
         case (Status.UNKNOW, _):

@@ -21,7 +21,7 @@ def parse_header(line) -> Header:
 
 def parse_input() -> tuple[Header, Formula]:
     header: Header = None
-    formula: Formula = []
+    formula: list = []
     for line in sys.stdin:
         if line[0] == 'c':   # comment
             pass
