@@ -19,10 +19,10 @@ def parse_header(line) -> Header:
 
 
 
-def parse_input() -> tuple[Header, Formula]:
+def parse_input(stream) -> tuple[Header, Formula]:
     header: Header = None
     formula: list = []
-    for line in sys.stdin:
+    for line in stream:
         line = line.lstrip()
         if not line:    continue
         if line[0] == 'c':         # comment

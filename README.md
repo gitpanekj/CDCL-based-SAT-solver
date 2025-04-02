@@ -5,4 +5,12 @@ Contributors: Jan Pánek (xpanek11@stud.fit.vut.cz)
 Solver name: SATisfactory
 
 Run as
-> python3 main.py < input_in_dimacs_format
+```
+python3 main.py < input_in_dimacs_format
+```
+
+or
+
+```
+python3 main.py input_file
+```
